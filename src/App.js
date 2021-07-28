@@ -10,7 +10,12 @@ function App() {
   function calc(e, amount, years) {
     e.preventDefault();
     if (amount <= 0 || years > 30 || years <= 0 || salary <= 0) return;
-    let cash = (amount * 15) / 100;
+    let cash
+    if(salary<=4500) {
+      cash = (amount * 10) / 100;
+    }else if(salary >=4500) {
+      cash = (amount * 15) / 100;
+    }
     amount -= (amount * 15) / 100;
 
     let x = amount * (1.8 / 100);
