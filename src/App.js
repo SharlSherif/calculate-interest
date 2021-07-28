@@ -9,6 +9,7 @@ function App() {
 
   function calc(e, amount, years) {
     e.preventDefault();
+    console.log(amount,years)
     if (amount <= 0 || years > 30 || years <= 0 || salary <= 0) return;
     let cash
     if(salary<=4500) {
@@ -20,9 +21,10 @@ function App() {
 
     let x = amount * (1.8 / 100);
     let y = x * years;
-    const monthly = (y + amount) / years / 12;
+    const monthly = ((y + amount) / years) / 12;
     setResult({
       yearly: (y + amount) / years,
+      years,
       monthly,
       cash,
       isPossible: salary * 0.4 >= monthly,
@@ -93,8 +95,8 @@ function App() {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">{Math.round(result.cash)} ج</th>
-                    <th scope="row">{Math.round(result.monthly)} ج</th>
+                    <th scope="row">{Math.trunc(result.cash)} ج</th>
+                    <th scope="row">{Math.trunc(result.monthly)} ج</th>
                   </tr>
                 </tbody>
               </table>
@@ -107,6 +109,8 @@ function App() {
             >
               مينفعش تقسط الشقة دي لان القسط الشهري اكثر من 40% من مرتبك الحالي
               ({salary} ج) لازم يكون القسط الشهري لا يتعدي ({salary * 0.4} ج)
+              <br/>
+              جرب تزود عدد السنين 
             </div>
           )}
         </div>
