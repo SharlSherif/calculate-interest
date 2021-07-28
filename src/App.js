@@ -16,7 +16,7 @@ function App() {
     }else if(salary >=4500) {
       cash = (amount * 15) / 100;
     }
-    amount -= (amount * 15) / 100;
+    amount -= cash
 
     let x = amount * (1.8 / 100);
     let y = x * years;
