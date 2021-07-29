@@ -3,13 +3,14 @@ import "./App.css";
 
 function App() {
   const [amount, setAmount] = useState(0);
-  const [years, setYears] = useState(30);
+  const [years, setYears] = useState(1);
   const [salary, setSalary] = useState(0);
   const [result, setResult] = useState(null);
 
   function calc(e, amount, years) {
     e.preventDefault();
     console.log(amount,years)
+    years = Number(years)
     if (amount <= 0 || years > 30 || years <= 0 || salary <= 0) return;
     let cash
     if(salary<=4500) {
@@ -21,6 +22,7 @@ function App() {
 
     let x = amount * (1.8 / 100);
     let y = x * years;
+    amount+= (amount*10)/100
     const monthly = ((y + amount) / years) / 12;
     setResult({
       yearly: (y + amount) / years,
@@ -69,7 +71,7 @@ function App() {
               <label>عدد سنين القسط (حد اقصى 30 سنه)</label>
               <select
                 class="form-control my-1 mr-sm-2"
-                onInput={(e) => setYears(e.target.value)}
+                onClick={(e) => setYears(e.target.value)}
               >
                 {selectableYears().map((n) => (
                   <option>{n}</option>
