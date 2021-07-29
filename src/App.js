@@ -9,21 +9,20 @@ function App() {
 
   function calc(e, amount, years) {
     e.preventDefault();
-    console.log(amount,years)
-    years = Number(years)
+    console.log(amount, years);
+    years = Number(years);
     if (amount <= 0 || years > 30 || years <= 0 || salary <= 0) return;
-    let cash
-    if(salary<=4500) {
-      cash = (amount * 10) / 100;
-    }else if(salary >=4500) {
+    let cash = 0;
+    if (salary <= 4500) {
+      amount-= (amount * 10) / 100;
+    } else if (salary > 4500) {
       cash = (amount * 15) / 100;
     }
-    amount -= cash
 
     let x = amount * (1.8 / 100);
     let y = x * years;
-    amount+= (amount*10)/100
-    const monthly = ((y + amount) / years) / 12;
+    amount += (amount * 10) / 100;
+    const monthly = (y + amount) / years / 12;
     setResult({
       yearly: (y + amount) / years,
       years,
@@ -47,14 +46,14 @@ function App() {
           حساب قيمة القسط الشهري لمبادره التمويل العقاري 3% لسنه 2021
         </h1>
         <hr />
-        <div class="col-12">
+        <div class="col-lg-3 col-md-12">
           <form className=" justify-content-center mt-3">
             <div class="form-group">
               <label>مرتبك الشهري</label>
               <input
                 type="number"
                 class="form-control"
-                placeholder="مثال:350000"
+                placeholder="مثال:3500"
                 onInput={(e) => setSalary(e.target.value)}
               />
             </div>
@@ -111,10 +110,28 @@ function App() {
             >
               مينفعش تقسط الشقة دي لان القسط الشهري اكثر من 40% من مرتبك الحالي
               ({salary} ج) لازم يكون القسط الشهري لا يتعدي ({salary * 0.4} ج)
-              <br/>
-              جرب تزود عدد السنين 
+              <br />
+              جرب تزود عدد السنين
             </div>
           )}
+        </div>
+        <div className="col-lg-6 col-md-12">
+          <h4>ملاحظات:-</h4>
+          <ul className="mt-3">
+            <li>
+              الحسبه دي للفرد مش للعائله فا لو مرتبك اقل من 4500 بتحسب المقدم
+              10% ولو اكتر هيبقي 15%
+            </li>
+            <li>
+              في وديعة صيانه 10% من ثمن الشقة محسوبه مع القسط الشهري
+            </li>
+            <li>
+              المقدم في حاله محدود الدخل بيكون بالتقسيط
+            </li>
+            <li>
+              المقدم في حاله متوسط الدخل بيكون كاش
+            </li>
+          </ul>
         </div>
       </div>
     </div>
